@@ -24,7 +24,7 @@ const Header = () => {
   },null)
  
   return(
-    <div className="flex justify-between items-center shadow-lg fixed top-0 w-[100%] bg-white z-20 p-6">
+    <div className="flex justify-between items-center shadow-lg fixed top-0 w-[100%] bg-white z-30 p-6">
       <div className="logo-container w-36 mobile:w-32">
         <img className="w-[100%]" alt="logo" src= {LOGO}/>
       </div>
