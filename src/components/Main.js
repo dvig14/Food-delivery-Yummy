@@ -27,7 +27,7 @@ const Main = () => {
 
   const fetchData = async () => {
     try{
-      const data = await fetch('https://thingproxy.freeboard.io/fetch/' + Swiggy_URL);
+      const data = await fetch('https://corsproxy.io/?' + Swiggy_URL);
 
       const json = await data.json();
 
