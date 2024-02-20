@@ -23,14 +23,15 @@ const RestaurantMenu = () => {
 
     const resInfo = useRestaurantMenu(resId)
     
-    if(resInfo === null) return <Shimmer/> 
-    const {name, cuisines, costForTwoMessage,areaName,avgRating,totalRatingsString} = resInfo?.cards[0]?.card?.card?.info
+    if(resInfo === null) return <Shimmer/>
+    
+    const {name, cuisines, costForTwoMessage,areaName,avgRating,totalRatingsString} = 
+    resInfo?.cards?.map((x)=>x.card)?.find((x) => 
+    x && x.card["@type"] === 'type.googleapis.com/swiggy.presentation.food.v2.Restaurant')?.card?.info
 
-    const categories = 
-        resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
-            (c) => 
-            c.card?.card?.["@type"] === 'type.googleapis.com/swiggy.presentation.food.v2.ItemCategory'
-        )
+    const categories = resInfo?.cards.find((x)=>x.groupedCard)?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+        (c) => c.card?.card?.["@type"] === 'type.googleapis.com/swiggy.presentation.food.v2.ItemCategory'
+    )
    
     return (
         <div className='mt-[8rem] text-gray-700 flex flex-col items-center'>
