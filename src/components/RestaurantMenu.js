@@ -27,7 +27,7 @@ const RestaurantMenu = () => {
     
     const {name, cuisines, costForTwoMessage,areaName,avgRating,totalRatingsString} = 
     resInfo?.cards?.map((x)=>x.card)?.find((x) => 
-    x && x.card["@type"] === 'type.googleapis.com/swiggy.presentation.food.v2.Restaurant')?.card?.info
+     x && x.card["@type"] === 'type.googleapis.com/swiggy.presentation.food.v2.Restaurant')?.card?.info
 
     const categories = resInfo?.cards.find((x)=>x.groupedCard)?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
         (c) => c.card?.card?.["@type"] === 'type.googleapis.com/swiggy.presentation.food.v2.ItemCategory'
