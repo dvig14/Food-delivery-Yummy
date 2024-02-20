@@ -11,7 +11,7 @@ const useRestaurantMenu = (resId) => {
 
     const fetchMenu = async() => {
       try{
-          const data = await fetch('https://corsproxy.io/?' + Menu_API + resId)
+          const data = await fetch('https://corsproxy.org/?' +  encodeURIComponent(Menu_API + resId))
           const json = await data.json();
          // console.log(json.data)
           setResInfo(json.data)
