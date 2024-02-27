@@ -6,7 +6,7 @@ const Contact = () =>{
               Feel Free To Contact Us
            </h2>
            
-           <form action='https://formspree.io/f/xqkradby' method='POST' className='flex flex-col gap-[2rem] border-black 
+           <form action='https://formspree.io/f/mwkgbqwo' method='POST' className='flex flex-col gap-[2rem] border-black 
              laptop:w-[40%] tablet:w-[50%] mobile:w-[80%] '>
   
               <input type='text' placeholder='USERNAME' name='USERNAME' required
