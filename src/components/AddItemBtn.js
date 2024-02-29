@@ -3,7 +3,7 @@ import {addItem,removeItem,itemCount,updateAtZero} from '../utils/cartSlice'
 import {IndexContext} from '../utils/IndexContext'
 import {useContext} from 'react'
 
-const AddItemBtn = ({setActiveBtnIndex,btnIndex,item,index,val,eachItemCount}) => {
+const AddItemBtn = ({item,val,eachItemCount}) => {
   
   const dispatch = useDispatch();
   const {restName,setOtherRestaurant} = useContext(IndexContext)
@@ -19,13 +19,13 @@ const AddItemBtn = ({setActiveBtnIndex,btnIndex,item,index,val,eachItemCount}) =
 
   const handleRemoveItem = (item,count) => {
    count > 0 ? dispatch(itemCount({itemId,count,price,restName})) : 
-    [dispatch(updateAtZero({itemId})),setActiveBtnIndex(index)] ;
+    dispatch(updateAtZero({itemId})) ;
     dispatch(removeItem(item))
   }
-
+ 
   return(
         <>
-        { btnIndex ? 
+        { checkRest.some((res)=>res.itemId === itemId) ? 
           <button className=' rounded-md bg-white shadow-lg py-1 px-3 relative top-[-1rem] flex items-center gap-3
            m-auto mobile:py-[0.1rem] mobile:px-2 mobile:top-[-0.5rem]'>
 
@@ -53,7 +53,7 @@ const AddItemBtn = ({setActiveBtnIndex,btnIndex,item,index,val,eachItemCount}) =
           mobile:py-1 mobile:top-[-0.5rem]'
           onClick={() => {
            cartItems.length === 0 || checkRest[0].restName === restName ? 
-           [setActiveBtnIndex(),handleAddItem(item,1)] : setOtherRestaurant(true)
+           handleAddItem(item,1) : setOtherRestaurant(true)
           }}>
            Add
          </button>

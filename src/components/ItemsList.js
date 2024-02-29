@@ -1,4 +1,4 @@
-import React,{useState,useContext} from 'react'
+import React,{useContext} from 'react'
 import {CDN_URL} from '../utils/constants'
 import AddItemBtn from './AddItemBtn'
 import {useSelector} from 'react-redux'
@@ -6,7 +6,6 @@ import {IndexContext} from '../utils/IndexContext'
 
 const ItemsList = ({items}) => {
 
-  const [activeBtnIndex,setActiveBtnIndex] = useState([])
   const countVal = useSelector((store) => store.cart.count)
   const {isCart} = useContext(IndexContext)
 
@@ -36,12 +35,10 @@ const ItemsList = ({items}) => {
             <div className={`${isCart ? 'font-bold flex items-center mr-[1.5rem] ' : 'hidden'}`}>
 
             { isCart && 
-              <AddItemBtn btnIndex = {true}
+              <AddItemBtn 
                  eachItemCount = {countVal.map((val)=> val.itemId === item?.card?.info?.id ? val.count : null)}
                   val = {countVal}
                   item = {item}
-                  index = {index}
-                  setActiveBtnIndex = {() => ''}
               />
             }
             </div>
@@ -55,16 +52,10 @@ const ItemsList = ({items}) => {
               }
               {
                 !isCart && 
-                <AddItemBtn btnIndex = {activeBtnIndex.includes(index)}
+                <AddItemBtn 
                   eachItemCount = {countVal.map((val)=> val.itemId === item?.card?.info?.id ? val.count : null)}
                   val = {countVal}
                   item = {item}
-                  index = {index}
-                  setActiveBtnIndex = {(ind) => setActiveBtnIndex((activeBtnIndex) => 
-                    [...activeBtnIndex].includes(index) ?
-                    [...activeBtnIndex].filter((index) => ind !== index)
-                    : [...activeBtnIndex,index]
-                  )}
                 />
               }
 
